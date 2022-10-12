@@ -20,7 +20,7 @@ contract Ownable {
         return _owner;
     }
 
-    constructor() {
+    constructor() public {
         _owner = msg.sender;
         emit OwnershipTransferred(address(0), _owner);
     }
@@ -53,7 +53,7 @@ contract Pausable is Ownable{
     bool private _paused;
 
     function setPauseState(bool state) public onlyOwner {
-        require(stata != _paused);
+        require(state != _paused);
 
         _paused = state;
 
@@ -63,8 +63,8 @@ contract Pausable is Ownable{
             emit Unpaused(msg.sender);
     }
 
-    constructor {
-        _puased = false;
+    constructor() public {
+        _paused = false;
         emit Unpaused(msg.sender);
     }
 
@@ -270,6 +270,9 @@ contract ERC721 is Pausable, ERC165 {
 
         require(!_exists(tokenId), "token already minted");
         require(to != address(0));
+
+        _tokenOwner[tokenId] = to;
+        _ownedTokensCount[to].increment();
 
         emit Transfer(address(0), to, tokenId);
     }
@@ -559,7 +562,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
         // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
     // require the token exists before setting
 
-    function setTokenURI(uint256 tokenId) internal {
+    function _setTokenURI(uint256 tokenId) internal {
         require(_exists(tokenId), "token does not exist");
         _tokenURIs[tokenId] = strConcat(_baseTokenURI, uint2str(tokenId));
     }
@@ -575,15 +578,11 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -returns a true boolean upon completion of the function
 //      -calls the superclass mint and setTokenURI functions
 
-contract YazarERC721Token is ERC721Metadata{
-
-    constructor () public ERC721Metadata("Yazar Token","YRT","https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/")  {
-        
-    }
+contract YazarERC721Token is ERC721Metadata("Yazar Token","YRT","https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
 
     function mint(address to, uint256 tokenId) public onlyOwner returns(bool){
         super._mint(to, tokenId);
-        super.setTokenURI(tokenId);
+        super._setTokenURI(tokenId);
         return true;
     }
 

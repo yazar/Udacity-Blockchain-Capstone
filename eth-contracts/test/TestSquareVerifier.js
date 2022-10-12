@@ -5,3 +5,25 @@
 
     
 // Test verification with incorrect proof
+
+var SquareVerifier = artifacts.require('verifier');
+const zokratesProof = require("../../zokrates/code/square/proof.json");
+
+contract('TestSquareVerifier', accounts => {
+  const owner = accounts[0];
+
+
+  beforeEach(async() => {
+      this.contract = await SquareVerifier.new({from: owner});
+  });
+
+  it("Test verification with correct proof", async() => {
+    let result = await this.contract.verifyTx.call(...Object.values(zokratesProof.proof), zokratesProof.inputs);
+    assert.equal(result, true)
+  });
+    
+  it("Test verification with incorrect proof", async() => {
+    let result = await this.contract.verifyTx.call(...Object.values(zokratesProof.proof), [15]);
+    assert.equal(result, false);
+  });
+});

@@ -1,0 +1,171 @@
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'goerli-fork'
+> Network id:      5
+> Block gas limit: 0x1c9c380
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > block number:        7758474
+   > block timestamp:     1665605984
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.756969830415825039
+   > gas used:            208305
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00208305 ETH
+
+   -------------------------------------
+   > Total cost:          0.00208305 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'Verifier'
+   --------------------
+   > block number:        7758476
+   > block timestamp:     1665605991
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.746900780415825039
+   > gas used:            979542
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00979542 ETH
+
+
+   Replacing 'SolnSquareVerifier'
+   ------------------------------
+   > block number:        7758477
+   > block timestamp:     1665606018
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.717004080415825039
+   > gas used:            2989670
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0298967 ETH
+
+
+   Deploying 'YazarERC721Token'
+   ----------------------------
+   > block number:        7758478
+   > block timestamp:     1665606058
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.691436300415825039
+   > gas used:            2556778
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02556778 ETH
+
+   -------------------------------------
+   > Total cost:           0.0652599 ETH
+
+
+Summary
+=======
+> Total deployments:   4
+> Final cost:          0.06734295 ETH
+
+
+
+
+
+Starting migrations...
+======================
+> Network name:    'goerli'
+> Network id:      5
+> Block gas limit: 0x1c9c380
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0xa3f0bee67e330e2c54ae47732bd1190f3f9cae731d366213a785378888857863
+   > Blocks: 1            Seconds: 8
+   > contract address:    0x8edD449dB7B22F1604113f62d3d132c33FD7A03A
+   > block number:        7758478
+   > block timestamp:     1665606084
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.756806830415825039
+   > gas used:            224605
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00224605 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00224605 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'Verifier'
+   --------------------
+   > transaction hash:    0x2a5622de8cb33f7daf638e82fdff76da5a3894fd0b0512a1e143a6acb7327361
+   > Blocks: 1            Seconds: 16
+   > contract address:    0xf09dA09664358b9460f27724eF8Ff9bBe99d57c6
+   > block number:        7758482
+   > block timestamp:     1665606144
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.746553780415825039
+   > gas used:            979542
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00979542 ETH
+
+
+   Replacing 'SolnSquareVerifier'
+   ------------------------------
+   > transaction hash:    0x41da2963d7489e41c0088ddd14d0c1c24d693440fc87edfb766cc2ae88ee887a
+   > Blocks: 1            Seconds: 40
+   > contract address:    0x55064059603706e5E05Ca81c9F12d4f60Af01449
+   > block number:        7758484
+   > block timestamp:     1665606192
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.715032080415825039
+   > gas used:            3152170
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0315217 ETH
+
+
+   Deploying 'YazarERC721Token'
+   ----------------------------
+   > transaction hash:    0xa6ea034bebbcf05a30138d9d453075f1d24bf50c8b3b927d3c1a178621605310
+   > Blocks: 1            Seconds: 28
+   > contract address:    0x4B2150934711dAa70D06276eafAeEAE0B263D8D1
+   > block number:        7758486
+   > block timestamp:     1665606228
+   > account:             0xE22F88d1186F0E139F1264261331b6B7138AF1c9
+   > balance:             0.687839300415825039
+   > gas used:            2719278
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02719278 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:           0.0685099 ETH
+
+
+Summary
+=======
+> Total deployments:   4
+> Final cost:          0.07075595 ETH

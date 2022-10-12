@@ -12,82 +12,57 @@ pragma solidity >=0.4.21 <0.6.0;
 //  - make sure you handle metadata as well as tokenSuplly
 
 import "./ERC721Mintable.sol";
-import "../../zokrates/code/square/Verifier.sol";
+import "./verifier.sol";
 
-contract SolnSquareVerifier is NipaHutERC721Token {
+
+
+contract SolnSquareVerifier is YazarERC721Token {
+  
+  Verifier squareVerifier;
 
  struct Solution {
     uint256 tokenIndex;
     address tokenAddress;
+    bool minted;
   }
 
   Solution[] solutions;
 
-  mapping(byte32 => Solution) solutionsMap;
+  mapping(bytes32 => Solution) solutionsMap;
+  mapping(uint256 => Solution) solutionsByIndex;
 
-  byte32 lastIndex = 0;
 
   event SolutionAdded(uint256 tokenIndex, address tokenAddress);
 
-  function addSolution(uint256 tokenIndex, address tokenAddress) public {
-    Solution newSolution = Solution(tokenIndex, tokenAddress);
+  function addSolution(uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[1] memory input, address accountAddress, uint256 tokenIndex) public {
+    
+    //require(squareVerifier.verifyTx(a,b,c,input), "solution can not verified");
+
+    bytes32 solutionKey = keccak256(abi.encodePacked(a, b, c, input));
+
+    require(solutionsMap[solutionKey].tokenIndex == 0, "solution is used before");
+
+
+    Solution memory newSolution = Solution(tokenIndex, accountAddress, false);
 
     solutions.push(newSolution);
-    solutionsMap[lastIndex] = newSolution;
-    lastIndex++;
+    solutionsMap[solutionKey] = newSolution;
+    solutionsByIndex[tokenIndex] = newSolution;
 
-    emit SolutionAdded(tokenIndex, tokenAddress);
+    emit SolutionAdded(tokenIndex, accountAddress);
   }
 
   function mintNft(uint256 tokenIndex, address tokenAddress) public returns(bool) {
-    require(condition);
-    require(!isSolutionExists(tokenIndex, tokenAddress));
-
-    addSolution(tokenIndex, tokenAddress);
+    require(solutionsByIndex[tokenIndex].tokenAddress != address(0), "solution for token index not exists");
+    require(solutionsByIndex[tokenIndex].minted == false, "token already minted");
+    //addSolution(tokenIndex, tokenAddress);
 
     mint(tokenAddress, tokenIndex);
-  }
-
-  function isSolutionExists(uint256 tokenIndex, address tokenAddress) returns(bool)
-  {
-
-    bool memory solutionState = false;;
-    for(uint i = 0; i < lastIndex; i++)
-    {
-        if(solutionsMap[i].tokenAddress == tokenAddress && solutionsMap[i].tokenIndex == tokenIndex)
-        {
-            solutionState = true;
-        }
-    }
-
-    return solutionState;
   }
 
 }
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
