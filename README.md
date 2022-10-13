@@ -15,6 +15,11 @@ Token Symbol : YRT
 
 Opensea Goerli Storefront : https://testnets.opensea.io/collection/yazar-token
 
+### Contract ABI
+you can found it on ```eth-contracts/build/contracts``` folder
+
+
+
 ### Installing And Testing Steps On Local Network
 
 Open terminal on project folder
